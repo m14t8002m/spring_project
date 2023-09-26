@@ -5,22 +5,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorService {
 
-	public int calculator(int num1, int num2, String sing) {
+	public int calculator(int getNumber01, int getNumber02, String sing) {
 
 		int result = 0;
 
 		switch (sing) {
 		case "plus":
-			result = num1 + num2;
+			result = getNumber01 + getNumber02;
 			break;
 		case "minus":
-			result = num1 - num2;
+			result = getNumber01 - getNumber02;
 			break;
 		case "multi":
-			result = num1 * num2;
+			result = getNumber01 * getNumber02;
 			break;
 		case "divid":
-			result = num1 / num2;
+			result = getNumber01 / getNumber02;
 			break;
 		}
 
