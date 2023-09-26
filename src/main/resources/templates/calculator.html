@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>計算機</title>
+	<script th:src="@{/js/jquery.js}"></script>
+</head>
+
+<body>
+	<h1>計算機</h1>
+	<form method="post" action="calculation" id="jsi-submitForm">
+		<input type="text" id="jsi-inputNumber01">
+		<select id="jsi-sign">
+			<option value="plus">+</option>
+			<option value="minus">-</option>
+			<option value="multi">×</option>
+			<option value="divid">÷</option>
+		</select>
+		<input type="text" id="jsi-inputNumber02">
+		<button type="submit">=</button>
+	</form>
+	<div id="jsi-submitResult"></div>
+	<script defer>
+		window.onload = function () {
+			$("#jsi-submitForm").on("submit", function (calculationAction) {
+				calculationAction.preventDefault(); //ページ遷移無効
+				$.ajax({
+					url: $(this).attr("action"), //action属性のurlを抽出
+					type: "POST",
+					data: {
+						inputNumber01: $("#jsi-inputNumber01").val(),
+						inputNumber02: $("#jsi-inputNumber02").val(),
+						sign: $("#jsi-sign").val()
+					},
+					success: function (data) {
+						$("#jsi-submitResult").html(data);
+					},
+					error: function () { //通信が失敗した場合
+						alert("通信失敗しました。");
+					}
+				});
+			});
+		}
+	</script>
+</body>
+
+</html>

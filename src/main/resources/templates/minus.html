@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>引き算</title>
+	<script th:src="@{/js/jquery.js}"></script>
+</head>
+
+<body>
+	<h1>引き算</h1>
+	<form method="post" action="minusCalculation" id="jsi-submitForm">
+		<input type="text" id="jsi-inputNumber01">
+		<span>ー</span>
+		<input type="text" id="jsi-inputNumber02">
+		<button type="submit">=</button>
+	</form>
+	<div id="jsi-submitResult"></div>
+	<script defer>
+		window.onload = function () {
+			$("#jsi-submitForm").on("submit", function (minusAction) {
+				minusAction.preventDefault(); //ページ遷移無効
+				$.ajax({
+					url: $(this).attr("action"), //action属性のurlを抽出
+					type: "POST",
+					data: {
+						inputNumber01: $("#jsi-inputNumber01").val(),
+						inputNumber02: $("#jsi-inputNumber02").val()
+					},
+					success: function (data) {
+						$("#jsi-submitResult").html(data);
+						$("#jsi-inputNumber01").val("");
+						$("#jsi-inputNumber02").val("");
+					},
+					error: function () { //通信が失敗した場合
+						alert("通信失敗しました。");
+					}
+				});
+			});
+		}
+	</script>
+</body>
+
+</html>
