@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>動物詳細画面</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<h1>動物詳細画面</h1>
+	<p th:text="No： + ${animalResult[0].id}"></p>
+	<p th:text="英名： + ${animalResult[0].name}"></p>
+	<p th:text="和名： + ${animalResult[0].japaneseName}"></p>
+	<p th:text="鳴き声： + ${animalResult[0].cry}"></p>
+	<button onclick="history.back()">トップへ</button>
+</body>
